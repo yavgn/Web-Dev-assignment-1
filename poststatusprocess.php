@@ -7,6 +7,7 @@
 <body>
 	<h1>Status Posting System</h1>
 	<?php
+		//initialise global variables
 		$code = $_POST["statusCode"]; 
 		$status = $_POST["status"];
 		$shareStatus = $_POST["shareStatus"];
@@ -15,27 +16,45 @@
 		require_once ("/home/yfd0036/conf/settings.php");
 
 		$checkQuery = "Select Status_ID from yfd0036.Status where Status_ID = '$code'";
+		$checkTable = "Show tables where Tables_in_yfd0036 = 'Status'";
+		$createTable = "Create table Status(Status_ID varchar(5) not null, Status varchar varchar(100) not null, Share_Status varchar(10) not null, Date date format 'dd/mm/yyyy' not null, Permissions varchar(40), Primary Key (Status_ID))";
 
+		//set up connection
 		$dbConnect = @mysqli_connect($host, $user, $pswd, $dbnm);
 		if (!$dbConnect){
 			die("<p>The database server is not available.</p>");
 		}
 
-		if(empty($code) || empty($status) || empty($shareStatus) || empty($date) || preg_match('/^S\d{4}$/', $code) == false){
+		function tableExists(){
+			if(!mysqli_query($dbConnect, $checkTable)){
+				mysqli_query($dbConnect, $createTable);
+				echo "<p>Table Created</p>";
+			}
+		}
+
+		tableExists();
+
+		//checks for missing fields, pattern of status code and pattern of status
+		if(empty($code) || empty($status) || empty($shareStatus) || empty($date) || preg_match('/^S\d{4}$/', $code) == false || preg_match('/^[a-zA-Z0-9,.!? ]*$/', $status) == false){
 			if (!preg_match('/^S\d{4}$/', $code)) {
 				echo "<p>Incorrect use of Status Code</p>";
+			}
+			elseif (!preg_match('/^[a-zA-Z0-9,.!? ]*$/', $status)) {
+				echo "<p>Please enter alphanumeric values</p>";
 			}
 			else{
 				echo "<p> Missing fields </p>";
 			}
 		}
-		else{	
+		//checks if permissions are set, if not perms is none
+		else{
 			if(isset($_POST["perms"])){
 				$perms = implode(' ', $_POST["perms"]);
 			}
 			else{
 				$perms = "None";
 			}
+			//query to insert into
 			$query = "insert into yfd0036.Status"."(Status_ID, Status, Share_Status, Date, Permissions)"."values"."('$code','$status','$shareStatus','$date','$perms')";
 			if (mysqli_query($dbConnect, $query)){
 				echo "<p>Record successfully inserted </p>";
