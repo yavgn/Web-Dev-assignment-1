@@ -6,10 +6,18 @@
 </head>
 <body>
 	<h1>Status Posting System</h1>
+	<nav>
+		<a class="menubtn" href="index.html">Home</a>
+		<a class="menubtn" href="poststatusform.php">Post</a> 
+		<a class="menubtn" href="searchstatusform.html">Search</a>
+		<a class="menubtn" href="about.html">About</a>
+	</nav>
+	<br>
 	<form action="poststatusprocess.php" method="post">
 		<label>Status Code (required): <input type="text" name="statusCode"></label>
 		<br>
-		<label>Status (required): <input type="text" name="status"></label>
+		<label>Status (required): </label>
+		<input type="text" name="status">
 		<br><br>
 		<label>Share: </label>
 		<input type="radio" name="shareStatus" value="Public"> 
@@ -33,6 +41,5 @@
 		<input type="submit" name="postStatus" value="Post">
 		<input type="reset" name="resetStatus" value="Reset">
 	</form>
-	<a href="index.html">Return to Home Page</a>
 </body>
 </html>

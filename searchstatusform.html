@@ -6,12 +6,16 @@
 </head>
 <body>
 	<h1>Status Posting System</h1>
+	<nav>
+		<a class="menubtn" href="index.html">Home</a>
+		<a class="menubtn" href="poststatusform.php">Post</a> 
+		<a class="menubtn" href="searchstatusform.html">Search</a>
+		<a class="menubtn" href="about.html">About</a>
+	</nav>
+	<br>
 	<form action="searchstatusprocess.php" method="get">
-		<label>Status: </label><input type="text" name="searchStatus" required="Please fill this out">
+		<label id="searchLabel">Status: </label><input type="text" name="searchStatus" required="Please fill this out">
 		<input type="submit" name="viewStatusBtn" value="View Status">
 	</form>
-	<br><br>
-	<a href="index.html">Return to Home Page</a>
-
 </body>
 </html>

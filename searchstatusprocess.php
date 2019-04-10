@@ -6,6 +6,13 @@
 </head>
 <body>
 	<h1>Status Information</h1>
+	<nav>
+		<a class="menubtn" href="index.html">Home</a>
+		<a class="menubtn" href="poststatusform.php">Post</a> 
+		<a class="menubtn" href="searchstatusform.html">Search</a>
+		<a class="menubtn" href="about.html">About</a>
+	</nav>
+	<br>
 	<?php
 		require_once ("/home/yfd0036/conf/settings.php");
 		$status = $_GET["searchStatus"];
@@ -38,9 +45,6 @@
 
 	?>
 	<br>
-	<a href="searchstatusform.html">Search for another status</a>
-	<br>
-	<a href="index.html">Return to Home Page</a>
-
+	<a class="menubtn" href="searchstatusform.html">Search for another status</a>
 </body>
 </html>

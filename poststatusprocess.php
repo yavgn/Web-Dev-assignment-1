@@ -6,6 +6,13 @@
 </head>
 <body>
 	<h1>Status Posting System</h1>
+	<nav>
+		<a class="menubtn" href="index.html">Home</a>
+		<a class="menubtn" href="poststatusform.php">Post</a> 
+		<a class="menubtn" href="searchstatusform.html">Search</a>
+		<a class="menubtn" href="about.html">About</a>
+	</nav>
+	<br>
 	<?php
 		//initialise global variables
 		$code = $_POST["statusCode"]; 
@@ -16,7 +23,6 @@
 		require_once ("/home/yfd0036/conf/settings.php");
 
 		$checkCode = "Select Status_ID from yfd0036.Status where Status_ID = '$code'";
-		$checkTable = "Show tables where Tables_in_yfd0036 = 'Status'";
 		$createTable = "Create table if not exists Status(Status_ID varchar(5) not null, Status varchar(100) not null, Share_Status varchar(10) not null, Date date not null, Permissions varchar(40), Primary Key (Status_ID))";
 
 		//set up connection
@@ -66,10 +72,7 @@
 			}	
 		}
 		mysqli_close($dbConnect);
-
 	?>
-	<a href="poststatusform.php">Post another status</a>
-	<br>
-	<a href="index.html">Return to Home Page</a>
+	<a class="menubtn" href="poststatusform.php">Post another status</a>
 </body>
 </html>
