@@ -29,10 +29,10 @@ input[type=text]{
 	width: 25%;
 	margin: 8px 0;
 	box-sizing: border-box;
+	
 }
-#searchLabel{
+.forms{
 	text-align: center;
-	margin-left: 420px;
 }
 .menubtn{
 	border-style: solid;

@@ -45,6 +45,6 @@
 
 	?>
 	<br>
-	<a class="menubtn" href="searchstatusform.html">Search for another status</a>
+	<div class="forms"><a class="menubtn" href="searchstatusform.html">Search for another status</a></div>
 </body>
 </html>
